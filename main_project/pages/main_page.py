@@ -18,6 +18,7 @@ class MainPage(Base):
     select_section_product_xpath = "//a[@href='/posuda/?banner_main=44932&chpnk=1']"
     dishes = "//a[@href='/stolovaya-posuda/']"
     plates = "//*[@id='category-page__root']/div/div[2]/div[1]/ul/li[1]/a"
+    price = "//*[@id='category-page__root']/div/div[2]/div[3]/div[1]/div/div[2]/div/div/label[2]/div"
     plate = "//*[@id='category-page__root']/div/div[2]/div[3]/div[2]/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div/button"
     cart = "//a[@href='/cabinet/cart/']"
 
@@ -32,6 +33,9 @@ class MainPage(Base):
 
     def get_plates(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.plates)))
+
+    def get_price(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.price)))
 
     def get_plate(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.plate)))
@@ -56,6 +60,11 @@ class MainPage(Base):
         self.get_plates().click()
         print("Click select plates")
 
+    def click_price(self):
+        self.get_price().click()
+        print("Click select price")
+
+
     def click_plate(self):
         self.get_plate().click()
         print("Click select plate")
@@ -72,6 +81,7 @@ class MainPage(Base):
         self.click_select_section_product_xpath()
         self.click_dishes()
         self.click_plates()
+        self.click_price()
         self.click_plate()
         self.click_cart()
         self.asser_url('https://www.sima-land.ru/cabinet/cart/?per-page=20&sort=-created')

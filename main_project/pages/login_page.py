@@ -11,7 +11,7 @@ class LoginPage():
         self.driver = driver
 
     def authorization(self, login_name, login_password):
-        solver = TwoCaptcha('7b26684bcd1e1103d9278299a77959f6')
+        solver = TwoCaptcha('YOUR-API-KEY')
         button_personal_cab = WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, "//*[@id='page-header']//div//div[2]//div//div[2]//nav//div[2]//a")))
         button_personal_cab.click()
         print("Click Personal Cab")
